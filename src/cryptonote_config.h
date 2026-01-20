@@ -1,3 +1,4 @@
+// Copyright (c) 2026, The Bitvaluta Project
 // Copyright (c) 2014-2024, The Monero Project
 // 
 // All rights reserved.
