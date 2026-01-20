@@ -66,13 +66,9 @@ namespace cryptonote {
   /* Cryptonote helper functions                                          */
   /************************************************************************/
   //-----------------------------------------------------------------------------------------------
-  size_t get_min_block_weight(uint8_t version)
+  size_t get_min_block_weight()
   {
-    if (version < 2)
-      return CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1;
-    if (version < 5)
-      return CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V2;
-    return CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V5;
+    return CRYPTONOTE_BITVALUTA_BLOCK_GRANTED_FULL_REWARD_ZONE;
   }
   //-----------------------------------------------------------------------------------------------
   size_t get_max_tx_size()
@@ -86,13 +82,21 @@ namespace cryptonote {
     const int target_minutes = target / 60;
     const int emission_speed_factor = EMISSION_SPEED_FACTOR_PER_MINUTE - (target_minutes-1);
 
-    uint64_t base_reward = (MONEY_SUPPLY - already_generated_coins) >> emission_speed_factor;
-    if (base_reward < FINAL_SUBSIDY_PER_MINUTE*target_minutes)
+    // PRE
+    #if defined PREMINE
+    if (already_generated_coins == 0) {
+      reward = BITVALUTA_GENESIS_REWARD;
+      return true;
+    }
+    #endif
+
+    uint64_t base_reward = (BITVALUTA_MONEY_SUPPLY - already_generated_coins) >> emission_speed_factor;
+    if (base_reward < FINAL_BTV_SUBSIDY_PER_MINUTE*target_minutes)
     {
-      base_reward = FINAL_SUBSIDY_PER_MINUTE*target_minutes;
+      base_reward = FINAL_BTV_SUBSIDY_PER_MINUTE*target_minutes;
     }
 
-    uint64_t full_reward_zone = get_min_block_weight(version);
+    uint64_t full_reward_zone = get_min_block_weight();
 
     //make it soft
     if (median_weight < full_reward_zone) {

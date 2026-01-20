@@ -45,6 +45,7 @@
 #include "rpc/rpc_args.h"
 #include "daemon/command_line_args.h"
 #include "version.h"
+#include "string_tools.h"
 
 #ifdef STACK_TRACE
 #include "common/stack_trace.h"
@@ -121,6 +122,77 @@ bool isFat32(const wchar_t* root_path)
   return wcscmp(L"FAT32", &fs[0]) == 0;
 }
 #endif
+
+// Helper function to generate genesis transaction
+void print_genesis_tx_hex(const cryptonote::network_type nettype) {
+    using namespace cryptonote;
+
+    // Genereer miner account
+    account_base miner_key;
+    miner_key.generate();
+
+    std::cout << "Generating miner wallet..." << std::endl;
+    std::cout << "Miner account address:" << std::endl;
+    std::cout << cryptonote::get_account_address_as_str(nettype, false, miner_key.get_keys().m_account_address) << std::endl;
+
+    // Converteer sleutels naar std::array<unsigned char, 32>
+    std::array<unsigned char, 32> spend_key_bytes;
+    std::array<unsigned char, 32> view_key_bytes;
+    memcpy(spend_key_bytes.data(), &miner_key.get_keys().m_spend_secret_key, 32);
+    memcpy(view_key_bytes.data(), &miner_key.get_keys().m_view_secret_key, 32);
+
+    std::cout << "Miner spend secret key:" << std::endl;
+    epee::to_hex::formatted(std::cout, epee::as_byte_span(spend_key_bytes));
+    std::cout << std::endl << "Miner view secret key:" << std::endl;
+    epee::to_hex::formatted(std::cout, epee::as_byte_span(view_key_bytes));
+    std::cout << std::endl << std::endl;
+
+    // Sla sleutels ook op in een bestand
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::stringstream ss_filename;
+    ss_filename << "./miner01_keys" << std::put_time(&tm, "%Y%m%d%H%M%S") << ".dat";
+    std::ofstream key_file(ss_filename.str());
+    key_file << "Miner account address:\n" << cryptonote::get_account_address_as_str(nettype, false, miner_key.get_keys().m_account_address) << std::endl;
+    key_file << "Miner spend secret key:\n";
+    epee::to_hex::formatted(key_file, epee::as_byte_span(spend_key_bytes));
+    key_file << std::endl << "Miner view secret key:\n";
+    epee::to_hex::formatted(key_file, epee::as_byte_span(view_key_bytes));
+    key_file << std::endl;
+    key_file.close();
+
+    // Prepare genesis transaction
+    cryptonote::transaction tx_genesis;
+    construct_miner_tx(
+        0,      // height
+        0,      // median_weight
+        0,      // already_generated_coins
+        10,     // current_block_weight
+        0,      // fee
+        miner_key.get_keys().m_account_address, // miner_address
+        tx_genesis,
+        blobdata(),   // extra nonce
+        999,          // max_outs
+        1            // hard_fork_version
+    );
+
+    std::cout << "Object:" << std::endl;
+    std::cout << obj_to_json_str(tx_genesis) << std::endl << std::endl;
+
+    // Serialiseer naar hex voor config
+    std::stringstream ss;
+    binary_archive<true> ba(ss);
+    ::serialization::serialize(ba, tx_genesis);
+    std::string tx_hex = ss.str();
+
+    std::cout << "Insert this line into your coin configuration file:" << std::endl;
+std::cout << "std::string const GENESIS_TX = \"" 
+          << epee::string_tools::buff_to_hex_nodelimer(tx_hex) 
+          << "\";" << std::endl;
+
+}
+
+
 
 int main(int argc, char const * argv[])
 {

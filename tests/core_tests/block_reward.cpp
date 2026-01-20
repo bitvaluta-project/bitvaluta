@@ -72,13 +72,13 @@ namespace
   }
 
   bool construct_max_weight_block(test_generator& generator, block& blk, const block& blk_prev, const account_base& miner_account,
-    size_t median_block_count = CRYPTONOTE_REWARD_BLOCKS_WINDOW)
+    size_t median_block_count = CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW)
   {
     std::vector<size_t> block_weights;
     generator.get_last_n_block_weights(block_weights, get_block_hash(blk_prev), median_block_count);
 
     size_t median = misc_utils::median(block_weights);
-    median = std::max(median, static_cast<size_t>(CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE_V1));
+    median = std::max(median, static_cast<size_t>(CRYPTONOTE_BITVALUTA_BLOCK_GRANTED_FULL_REWARD_ZONE));
 
     transaction miner_tx;
     bool r = construct_miner_tx_by_weight(miner_tx, get_block_height(blk_prev) + 1, generator.get_already_generated_coins(blk_prev),
@@ -135,19 +135,19 @@ bool gen_block_reward::generate(std::vector<test_event_entry>& events) const
 
   // Test: miner transactions without outputs (block reward == 0)
   block blk_0r;
-  if (!rewind_blocks(events, generator, blk_0r, blk_0, miner_account, CRYPTONOTE_REWARD_BLOCKS_WINDOW))
+  if (!rewind_blocks(events, generator, blk_0r, blk_0, miner_account, CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW))
     return false;
 
-  // Test: block reward is calculated using median of the latest CRYPTONOTE_REWARD_BLOCKS_WINDOW blocks
+  // Test: block reward is calculated using median of the latest CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW blocks
   DO_CALLBACK(events, "mark_invalid_block");
   block blk_1_bad_1;
-  if (!construct_max_weight_block(generator, blk_1_bad_1, blk_0r, miner_account, CRYPTONOTE_REWARD_BLOCKS_WINDOW + 1))
+  if (!construct_max_weight_block(generator, blk_1_bad_1, blk_0r, miner_account, CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW + 1))
     return false;
   events.push_back(blk_1_bad_1);
 
   DO_CALLBACK(events, "mark_invalid_block");
   block blk_1_bad_2;
-  if (!construct_max_weight_block(generator, blk_1_bad_2, blk_0r, miner_account, CRYPTONOTE_REWARD_BLOCKS_WINDOW - 1))
+  if (!construct_max_weight_block(generator, blk_1_bad_2, blk_0r, miner_account, CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW - 1))
     return false;
   events.push_back(blk_1_bad_2);
 
@@ -191,7 +191,7 @@ bool gen_block_reward::generate(std::vector<test_event_entry>& events) const
     uint64_t txs_fee = get_tx_fee(tx_1) + get_tx_fee(tx_2);
 
     std::vector<size_t> block_weights;
-    generator.get_last_n_block_weights(block_weights, get_block_hash(blk_7), CRYPTONOTE_REWARD_BLOCKS_WINDOW);
+    generator.get_last_n_block_weights(block_weights, get_block_hash(blk_7), CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW);
     size_t median = misc_utils::median(block_weights);
 
     transaction miner_tx;
@@ -247,11 +247,11 @@ bool gen_block_reward::check_block_rewards(cryptonote::core& /*c*/, size_t /*ev_
   DEFINE_TESTS_ERROR_CONTEXT("gen_block_reward_without_txs::check_block_rewards");
 
   std::array<uint64_t, 7> blk_rewards;
-  blk_rewards[0] = MONEY_SUPPLY >> EMISSION_SPEED_FACTOR_PER_MINUTE;
+  blk_rewards[0] = BITVALUTA_MONEY_SUPPLY >> EMISSION_SPEED_FACTOR_PER_MINUTE;
   uint64_t cumulative_reward = blk_rewards[0];
   for (size_t i = 1; i < blk_rewards.size(); ++i)
   {
-    blk_rewards[i] = (MONEY_SUPPLY - cumulative_reward) >> EMISSION_SPEED_FACTOR_PER_MINUTE;
+    blk_rewards[i] = (BITVALUTA_MONEY_SUPPLY - cumulative_reward) >> EMISSION_SPEED_FACTOR_PER_MINUTE;
     cumulative_reward += blk_rewards[i];
   }
 

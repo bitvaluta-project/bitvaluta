@@ -24,7 +24,6 @@ ctest
 
 To run the same tests on a release build, replace `debug` with `release`.
 
-
 # Crypto Tests
 
 Crypto tests are located under the `tests/crypto` directory.
@@ -49,17 +48,21 @@ To run the same tests on a release build, replace `debug` with `release`.
 Functional tests are located under the `tests/functional_tests` directory.
 
 Building all the tests requires installing the following dependencies:
+
 ```bash
 pip install requests psutil monotonic zmq deepdiff
 ```
 
 First, run a regtest daemon in the offline mode and with a fixed difficulty:
+
 ```bash
-monerod --regtest --offline --fixed-difficulty 1
+bitvalutad --regtest --offline --fixed-difficulty 1
 ```
+
 Alternatively, you can run multiple daemons and let them connect with each other by using `--add-exclusive-node`. In this case, make sure that the same fixed difficulty is given to all the daemons.
 
 Next, restore a mainnet wallet with the following seed and restore height 0 (the file path doesn't matter):
+
 ```bash
 velvet lymph giddy number token physics poetry unquoted nibs useful sabotage limits benches lifestyle eden nitrogen anvil fewest avoid batch vials washing fences goat unquoted
 ```
@@ -75,7 +78,7 @@ Configuration of individual tests.
 The following environment variables may be set to control the mining test:
 
 - `MINING_NO_MEASUREMENT` - set to anything to use large enough and fixed mining timeouts (use case: very slow PCs and no intention to change the mining code)
-- `MINING_SILENT`         - set to anything to disable mining logging
+- `MINING_SILENT` - set to anything to disable mining logging
 
 For example, to customize the run of the functional tests, you may run the following commands from the build directory:
 
@@ -154,7 +157,6 @@ INFO: seed corpus: files: 1 min: 95b max: 95b total: 95b rss: 33Mb
 #63     NEW    cov: 32 ft: 50 corp: 15/1147b lim: 95 exec/s: 0 rss: 34Mb L: 79/95 MS: 1 CrossOver-
 ...
 ```
-
 
 # Hash tests
 

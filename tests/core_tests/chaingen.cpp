@@ -330,7 +330,7 @@ bool test_generator::construct_block(cryptonote::block& blk, const cryptonote::b
   uint64_t timestamp = blk_prev.timestamp + current_difficulty_window(hf_ver); // DIFFICULTY_BLOCKS_ESTIMATE_TIMESPAN;
   uint64_t already_generated_coins = get_already_generated_coins(prev_id);
   std::vector<size_t> block_weights;
-  get_last_n_block_weights(block_weights, prev_id, CRYPTONOTE_REWARD_BLOCKS_WINDOW);
+  get_last_n_block_weights(block_weights, prev_id, CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW);
 
   return construct_block(blk, height, prev_id, miner_acc, timestamp, already_generated_coins, block_weights, tx_list, hf_ver);
 }
@@ -356,7 +356,7 @@ bool test_generator::construct_block_manually(block& blk, const block& prev_bloc
   size_t height = get_block_height(prev_block) + 1;
   uint64_t already_generated_coins = get_already_generated_coins(prev_block);
   std::vector<size_t> block_weights;
-  get_last_n_block_weights(block_weights, get_block_hash(prev_block), CRYPTONOTE_REWARD_BLOCKS_WINDOW);
+  get_last_n_block_weights(block_weights, get_block_hash(prev_block), CRYPTONOTE_BTV_REWARD_BLOCKS_WINDOW);
   if (actual_params & bf_miner_tx)
   {
     blk.miner_tx = miner_tx;
