@@ -33,8 +33,8 @@
 
 const hardfork_t mainnet_hard_forks[] = {
   // bitvaluta will start with modern monero features from block 1
-  { 1, 1, 0, 1768978699 },
-  { 15, 2, 0, 1768978700 },
+  { 1, 1, 0, 1769408865 },
+  { 15, 2, 0, 1769408866 },
 };
 
 // not useable for bitvaluta, simple workaround
@@ -42,15 +42,15 @@ const size_t num_mainnet_hard_forks = sizeof(mainnet_hard_forks) / sizeof(mainne
 const uint64_t mainnet_hard_fork_version_1_till = 0;
 
 const hardfork_t testnet_hard_forks[] = {
-  { 1, 1, 0, 1768978699 },
-  { 15, 2, 0, 1768978700 },
+  { 1, 1, 0, 1769408865 },
+  { 15, 2, 0, 1769408866 },
 };
 
 const size_t num_testnet_hard_forks = sizeof(testnet_hard_forks) / sizeof(testnet_hard_forks[0]);
 const uint64_t testnet_hard_fork_version_1_till = 0;
 
 const hardfork_t stagenet_hard_forks[] = {
-  { 1, 1, 0, 1768978699 },
-  { 15, 2, 0, 1768978700 },
+  { 1, 1, 0, 1769408865 },
+  { 15, 2, 0, 1769408866 },
 };
 const size_t num_stagenet_hard_forks = sizeof(stagenet_hard_forks) / sizeof(stagenet_hard_forks[0]);
