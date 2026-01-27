@@ -192,8 +192,6 @@ std::cout << "std::string const GENESIS_TX = \""
 
 }
 
-
-
 int main(int argc, char const * argv[])
 {
   try {
