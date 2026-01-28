@@ -66,7 +66,7 @@
 #undef MONERO_DEFAULT_LOG_CATEGORY
 #define MONERO_DEFAULT_LOG_CATEGORY "net.p2p"
 
-#define MIN_WANTED_SEED_NODES 0
+#define MIN_WANTED_SEED_NODES 1
 
 static inline boost::asio::ip::address_v4 make_address_v4_from_v6(const boost::asio::ip::address_v6& a)
 {
@@ -737,7 +737,9 @@ namespace nodetool
     // Main
     else
     {
-      full_addrs.insert("157.230.17.107:37000"); // Germany (Frankfurt)
+      full_addrs.insert("64.226.112.6:37000"); // Germany (Frankfurt)
+      full_addrs.insert("209.38.47.78:37000"); // Netherlands (Amsterdam)
+      full_addrs.insert("178.62.43.170:37000"); // UK (London)
     }
     return full_addrs;
   }
