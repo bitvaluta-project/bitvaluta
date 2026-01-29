@@ -1,7 +1,7 @@
 # Bitvaluta
-Copyright (c) 2026, The Bitvaluta Project
-Copyright (c) 2014-2024, The Monero Project
-Portions Copyright (c) 2012-2013 The Cryptonote developers.
+- Copyright (c) 2026, The Bitvaluta Project
+- Copyright (c) 2014-2024, The Monero Project
+- Portions Copyright (c) 2012-2013 The Cryptonote developers.
 
 ## Table of Contents
 
