@@ -186,7 +186,7 @@ void print_genesis_tx_hex(const cryptonote::network_type nettype) {
     std::string tx_hex = ss.str();
 
     std::cout << "Insert this line into your coin configuration file:" << std::endl;
-std::cout << "std::string const GENESIS_TX = \"" 
+    std::cout << "std::string const GENESIS_TX = \"" 
           << epee::string_tools::buff_to_hex_nodelimer(tx_hex) 
           << "\";" << std::endl;
 
@@ -195,6 +195,9 @@ std::cout << "std::string const GENESIS_TX = \""
 int main(int argc, char const * argv[])
 {
   try {
+
+    print_genesis_tx_hex(cryptonote::MAINNET);
+    return 0;
 
     // TODO parse the debug options like set log level right here at start
 
