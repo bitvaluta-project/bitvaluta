@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 // 
 // All rights reserved.
 // 
@@ -43,8 +43,8 @@
 #include <ctime>
 #include <string>
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "daemon"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "daemon"
 
 namespace daemonize {
 
@@ -614,8 +614,8 @@ bool t_rpc_command_executor::mining_status() {
     uint64_t daily = 86400ull / mres.block_target * mres.block_reward * ratio;
     uint64_t monthly = 86400ull / mres.block_target * 30.5 * mres.block_reward * ratio;
     uint64_t yearly = 86400ull / mres.block_target * 356 * mres.block_reward * ratio;
-    tools::msg_writer() << "Expected: " << cryptonote::print_money(daily) << " monero daily, "
-        << cryptonote::print_money(monthly) << " monero monthly, " << cryptonote::print_money(yearly) << " yearly";
+    tools::msg_writer() << "Expected: " << cryptonote::print_money(daily) << " bitvaluta daily, "
+        << cryptonote::print_money(monthly) << " bitvaluta monthly, " << cryptonote::print_money(yearly) << " yearly";
   }
 
   return true;
@@ -1418,8 +1418,8 @@ bool t_rpc_command_executor::stop_daemon()
 //# ifdef WIN32
 //    // Stop via service API
 //    // TODO - this is only temporary!  Get rid of hard-coded constants!
-//    bool ok = windows::stop_service("BitMonero Daemon");
-//    ok = windows::uninstall_service("BitMonero Daemon");
+//    bool ok = windows::stop_service("bitvaluta Daemon");
+//    ok = windows::uninstall_service("bitvaluta Daemon");
 //    //bool ok = windows::stop_service(SERVICE_NAME);
 //    //ok = windows::uninstall_service(SERVICE_NAME);
 //    if (ok)

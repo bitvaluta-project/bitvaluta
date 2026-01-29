@@ -1,19 +1,19 @@
 # Compiling, debugging and testing efficiently
 
 This document describes ways of compiling, debugging and testing efficiently for various use cases.
-The intended audience are developers, who want to leverage newly added tricks to Monero via `CMake`. The document will lower the entry point for these developers.
-Before reading this document, please consult section "Build instructions" in the main README.md. 
+The intended audience are developers, who want to leverage newly added tricks to Bitvaluta via `CMake`. The document will lower the entry point for these developers.
+Before reading this document, please consult section "Build instructions" in the main README.md.
 Some information from README.md will be repeated here, but the aim is to go beyond it.
 
 ## Basic compilation
 
-Monero can be compiled via the main `Makefile`, using one of several targets listed there.
+Bitvaluta can be compiled via the main `Makefile`, using one of several targets listed there.
 The targets are actually presets for `CMake` calls with various options, plus `make` commands for building or in some cases `make test` for testing.
-It is possible to extract these `CMake` calls and modify them for your specific needs. For example, a minimal external cmake command to compile Monero, executed from within a newly created build directory could look like:
+It is possible to extract these `CMake` calls and modify them for your specific needs. For example, a minimal external cmake command to compile Bitvaluta, executed from within a newly created build directory could look like:
 
 `cmake -S "$DIR_SRC" -DCMAKE_BUILD_TYPE=Release && make`
 
-where the variable `DIR_SRC` is expected to store the path to the Monero source code.
+where the variable `DIR_SRC` is expected to store the path to the Bitvaluta source code.
 
 ## Use cases
 
@@ -35,7 +35,7 @@ For instance, in order to generate Makefiles and project files for the Code::Blo
 
 `cmake -G "CodeBlocks - Unix Makefiles" (...)`
 
-The additional artifact of the above call is the `monero.cbp` Code::Blocks project file in the build directory.
+The additional artifact of the above call is the `bitvaluta.cbp` Code::Blocks project file in the build directory.
 
 ### Debugging in Code::Blocks (CB)
 
@@ -43,7 +43,7 @@ First prepare the build directory for debugging using the following example comm
 
 `cmake -S "$DIR_SRC" -G "CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTS=ON && make -j 2`
 
-After a successful build, open the `monero.cbp` with CB. From the CB's menu bar select the target, that you want debug. Assuming these are unit tests:
+After a successful build, open the `bitvaluta.cbp` with CB. From the CB's menu bar select the target, that you want debug. Assuming these are unit tests:
 
 `Build -> Select target -> Select target -> unit_tests`
 
@@ -59,7 +59,7 @@ This parameter is what we need to transfer to CB, in order to reflect the same b
 
 `Project -> Set program's arguments...`
 
-Then in the `Program's arguments` textbox you'd write in this case: 
+Then in the `Program's arguments` textbox you'd write in this case:
 
 `--gtest_filter="logging.*"`
 
@@ -72,15 +72,19 @@ If everything looks fine, then after setting some breakpoints of your choice, th
 `Debug -> Start/Continue`
 
 ## To be done (and merged):
+
 ### Multihost parallel compilation
-https://github.com/monero-project/monero/pull/7160
+
+https://github.com/bitvaluta-project/bitvaluta/pull/7160
 
 ### Faster core_tests with caching
-https://github.com/monero-project/monero/pull/5821
+
+https://github.com/bitvaluta-project/bitvaluta/pull/5821
 
 ### Precompiled headers
-https://github.com/monero-project/monero/pull/7216
+
+https://github.com/bitvaluta-project/bitvaluta/pull/7216
 
 ### Unity builds
-https://github.com/monero-project/monero/pull/7217
 
+https://github.com/bitvaluta-project/bitvaluta/pull/7217

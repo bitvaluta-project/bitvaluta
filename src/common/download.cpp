@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2024, The Monero Project
+// Copyright (c) 2017-2024, The Bitvaluta Project
 // 
 // All rights reserved.
 // 
@@ -33,8 +33,8 @@
 #include "net/http_client.h"
 #include "download.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "net.dl"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "net.dl"
 
 namespace tools
 {

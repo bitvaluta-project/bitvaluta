@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 // 
 // All rights reserved.
 // 
@@ -34,8 +34,8 @@
 #include "misc_log_ex.h"
 #include "daemon/command_line_args.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "daemon"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "daemon"
 
 namespace daemonize
 {

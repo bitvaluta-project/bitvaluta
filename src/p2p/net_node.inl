@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -63,8 +63,8 @@
 #include <miniupnp/miniupnpc/upnpcommands.h>
 #include <miniupnp/miniupnpc/upnperrors.h>
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "net.p2p"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "net.p2p"
 
 #define MIN_WANTED_SEED_NODES 1
 
@@ -1833,7 +1833,7 @@ namespace nodetool
         {
           // seeds should have hostname converted to IP already
           MDEBUG("Seed node: " << full_addr);
-          server.m_seed_nodes.push_back(MONERO_UNWRAP(net::get_network_address(full_addr, default_port)));
+          server.m_seed_nodes.push_back(BITVALUTA_UNWRAP(net::get_network_address(full_addr, default_port)));
         }
         MDEBUG("Number of seed nodes: " << server.m_seed_nodes.size());
       }
@@ -2125,13 +2125,13 @@ namespace nodetool
       return true;
 
     static const std::vector<std::string> dns_urls = {
-      "blocklist.moneropulse.se"
-    , "blocklist.moneropulse.org"
-    , "blocklist.moneropulse.net"
-    , "blocklist.moneropulse.co"
-    , "blocklist.moneropulse.fr"
-    , "blocklist.moneropulse.de"
-    , "blocklist.moneropulse.ch"
+      "blocklist.bitvalutapulse.se"
+    , "blocklist.bitvalutapulse.org"
+    , "blocklist.bitvalutapulse.net"
+    , "blocklist.bitvalutapulse.co"
+    , "blocklist.bitvalutapulse.fr"
+    , "blocklist.bitvalutapulse.de"
+    , "blocklist.bitvalutapulse.ch"
     };
 
     std::vector<std::string> records;

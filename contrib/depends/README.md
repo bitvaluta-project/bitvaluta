@@ -18,9 +18,9 @@ For example:
 make HOST=x86_64-w64-mingw32 -j4
 ```
 
-A toolchain will be generated that's suitable for plugging into Monero's
+A toolchain will be generated that's suitable for plugging into Bitvaluta's
 cmake. In the above example, a dir named x86_64-w64-mingw32 will be
-created. To use it for Monero, from the top of the Monero source tree:
+created. To use it for Bitvaluta, from the top of the Bitvaluta source tree:
 
 ```bash
 mkdir build
@@ -73,4 +73,3 @@ update-alternatives --set x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc-posix
 
 - [description.md](description.md): General description of the depends system
 - [packages.md](packages.md): Steps for adding packages
-

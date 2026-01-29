@@ -1,6 +1,6 @@
-# Bootstrappable Monero Builds
+# Bootstrappable Bitvaluta Builds
 
-This directory contains the files necessary to perform bootstrappable Monero 
+This directory contains the files necessary to perform bootstrappable Bitvaluta
 builds.
 
 [Bootstrappability][b17e] furthers our binary security guarantees by allowing us
@@ -29,12 +29,12 @@ section](#choosing-your-security-model) before proceeding to perform a build.
 
 ## Building
 
-*The author highly recommends at least reading over the [common usage patterns
+_The author highly recommends at least reading over the [common usage patterns
 and examples](#common-guix-build-invocation-patterns-and-examples) section below
 before starting a build. For a full list of customization options, see the
-[recognized environment variables][env-vars-list] section.*
+[recognized environment variables][env-vars-list] section._
 
-To build Monero reproducibly with all default options, invoke the
+To build Bitvaluta reproducibly with all default options, invoke the
 following from the top of a clean repository:
 
 ```sh
@@ -58,7 +58,7 @@ worktree to save disk space:
 
 Much like how Gitian build outputs are attested to in a `gitian.sigs`
 repository, Guix build outputs are attested to in the [`guix.sigs`
-repository](https://github.com/monero-project/guix.sigs).
+repository](https://github.com/bitvaluta-project/guix.sigs).
 
 After you've cloned the `guix.sigs` repository, to attest to the current
 worktree's commit/tag:
@@ -166,16 +166,16 @@ details.
 
 ## Recognized environment variables
 
-* _**HOSTS**_
+- _**HOSTS**_
 
   Override the space-separated list of platform triples for which to perform a
   bootstrappable build.
 
-  _(defaults to "x86\_64-linux-gnu aarch64-linux-gnu
-  riscv64-linux-gnu x86\_64-w64-mingw32 x86\_64-unknown-freebsd
-  x86\_64-apple-darwin arm64-apple-darwin aarch64-linux-android")_
+  _(defaults to "x86_64-linux-gnu aarch64-linux-gnu
+  riscv64-linux-gnu x86_64-w64-mingw32 x86_64-unknown-freebsd
+  x86_64-apple-darwin arm64-apple-darwin aarch64-linux-android")_
 
-* _**SOURCES_PATH**_
+- _**SOURCES_PATH**_
 
   Set the depends tree download cache for sources. This is passed through to the
   depends tree. Setting this to the same directory across multiple builds of the
@@ -184,7 +184,7 @@ details.
   The path that this environment variable points to **must be a directory**, and
   **NOT a symlink to a directory**.
 
-* _**BASE_CACHE**_
+- _**BASE_CACHE**_
 
   Set the depends tree cache for built packages. This is passed through to the
   depends tree. Setting this to the same directory across multiple builds of the
@@ -193,28 +193,27 @@ details.
   The path that this environment variable points to **must be a directory**, and
   **NOT a symlink to a directory**.
 
-* _**JOBS**_
+- _**JOBS**_
 
   Override the number of jobs to run simultaneously, you might want to do so on
   a memory-limited machine. This may be passed to:
-
-    - `guix` build commands as in `guix shell --cores="$JOBS"`
-    - `make` as in `make --jobs="$JOBS"`
-    - `xargs` as in `xargs -P"$JOBS"`
+  - `guix` build commands as in `guix shell --cores="$JOBS"`
+  - `make` as in `make --jobs="$JOBS"`
+  - `xargs` as in `xargs -P"$JOBS"`
 
   See [here](#controlling-the-number-of-threads-used-by-guix-build-commands) for
   more details.
 
   _(defaults to the value of `nproc` outside the container)_
 
-* _**SOURCE_DATE_EPOCH**_
+- _**SOURCE_DATE_EPOCH**_
 
   Override the reference UNIX timestamp used for bit-for-bit reproducibility,
   the variable name conforms to [standard][r12e/source-date-epoch].
 
   _(defaults to the output of `git -c log.showSignature=false log --format=%at -1`)_
 
-* _**V**_
+- _**V**_
 
   If non-empty, will pass `V=1` to all `make` invocations, making `make` output
   verbose.
@@ -224,21 +223,21 @@ details.
   string) is interpreted the same way as not setting `V` at all, and that `V=0`
   has the same effect as `V=1`.
 
-* _**SUBSTITUTE_URLS**_
+- _**SUBSTITUTE_URLS**_
 
   A whitespace-delimited list of URLs from which to download pre-built packages.
   A URL is only used if its signing key is authorized (refer to the [substitute
   servers section](#option-1-building-with-substitutes) for more details).
 
-* _**ADDITIONAL_GUIX_COMMON_FLAGS**_
+- _**ADDITIONAL_GUIX_COMMON_FLAGS**_
 
   Additional flags to be passed to all `guix` commands.
 
-* _**ADDITIONAL_GUIX_TIMEMACHINE_FLAGS**_
+- _**ADDITIONAL_GUIX_TIMEMACHINE_FLAGS**_
 
   Additional flags to be passed to `guix time-machine`.
 
-* _**ADDITIONAL_GUIX_ENVIRONMENT_FLAGS**_
+- _**ADDITIONAL_GUIX_ENVIRONMENT_FLAGS**_
 
   Additional flags to be passed to the invocation of `guix shell` inside
   `guix time-machine`.
@@ -299,6 +298,7 @@ guix archive --authorize < <PREFIX>/share/guix/ci.guix.gnu.org.pub
 ```
 
 Where `<PREFIX>` is likely:
+
 - `/usr` if you installed from a distribution package
 - `/usr/local` if you installed Guix from source and didn't supply any
   prefix-modifying flags to Guix's `./configure`
@@ -322,11 +322,13 @@ like in the following snippet. The first build will take a while, but the
 resulting packages will be cached for future builds.
 
 For direct invocations of `guix`:
+
 ```sh
 guix <cmd> --no-substitutes
 ```
 
 For the scripts under `./contrib/guix/`:
+
 ```sh
 export ADDITIONAL_GUIX_COMMON_FLAGS='--no-substitutes'
 ```

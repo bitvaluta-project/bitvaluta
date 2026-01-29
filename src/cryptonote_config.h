@@ -1,5 +1,5 @@
 // Copyright (c) 2026, The Bitvaluta Project
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 // 
 // All rights reserved.
 // 
@@ -240,7 +240,7 @@ namespace config
   }};
 
   // Bitvaluta genesis tx & nonce 
-  std::string const GENESIS_TX = "014601ff0006ffebeee801026b7e25ef1e8aedaf933f08592d416d8da71e8c20eea951049f8cc94a1b964dd2808cee891a02ec47079ab106eba31e5456d20ced7ef5bf5db0d891bae8c2187d652f947d415080d88ee16f0281f2b470ae8f331b406ab1c7dc74f179da09970d3ff49da0fbfb199335f4a49480b081daaf1402f9da98b5478cec7602f27c6df7f1979804a83b8dad4585b3eb22c02f1999bd0b8080aace938c090200c49fbc290ba3c4e5c855d33c895f8460d63a19cfc0e9e400d274bdc92aba828080e983b1de1602557a695c60c4056690860c93735925b8b38b592d44871dbd3acf1251a5ca1a712101239c5627b853970e2777aeac57fc987702db9e1728cb6ae4061e5b5dd21ddd34";
+  std::string const GENESIS_TX = "014601ff0006ffebeee80102d6633379a6b4239805cbdc16ff0ef36081d0807a5ca6e2e83c9a03d4b579a630808cee891a020a314a34adfdf84001b0c6f4379df93e31d15964a05bf1348a8914e541fe85c880d88ee16f02aec1e3d5b9bc02a8f207721edf865fc0ff7c6e8dec7e3e176e2cf9982815c8a180b081daaf1402cfc7f172c2fe4499d67271a4a59ffbf85dd01490046680f432bac5466deda6a68080aace938c0902bdcd27f698c94ba58d29f2bf0730befc7690d9c8bebbdaac5f302be00c4602d98080e983b1de160238511ea70a8af28223abd78425aeaad916b006c46bb9a07777e7182be196c5eb2101259c66a97693c35c82e2c91803c159e7a4767ab3b53f28bcd5bbe2accb464c09";
   uint32_t const GENESIS_NONCE = 70000;
 
   // Hash domain separators
@@ -263,7 +263,7 @@ namespace config
   const unsigned char HASH_KEY_CLSAG_ROUND[] = "CLSAG_round";
   const unsigned char HASH_KEY_CLSAG_AGG_0[] = "CLSAG_agg_0";
   const unsigned char HASH_KEY_CLSAG_AGG_1[] = "CLSAG_agg_1";
-  const char HASH_KEY_MESSAGE_SIGNING[] = "MoneroMessageSignature";
+  const char HASH_KEY_MESSAGE_SIGNING[] = "BitvalutaMessageSignature";
   const unsigned char HASH_KEY_MM_SLOT = 'm';
   const constexpr char HASH_KEY_MULTISIG_TX_PRIVKEYS_SEED[] = "multisig_tx_privkeys_seed";
   const constexpr char HASH_KEY_MULTISIG_TX_PRIVKEYS[] = "multisig_tx_privkeys";

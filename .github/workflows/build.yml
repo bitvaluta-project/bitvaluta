@@ -3,19 +3,19 @@ name: ci/gh-actions/cli
 on:
   push:
     paths-ignore:
-      - 'docs/**'
-      - '**/README.md'
+      - "docs/**"
+      - "**/README.md"
   pull_request:
     paths-ignore:
-      - 'docs/**'
-      - '**/README.md'
+      - "docs/**"
+      - "**/README.md"
 
 # The below variables reduce repetitions across similar targets
 env:
-  REMOVE_BUNDLED_PACKAGES : sudo rm -rf /usr/local
+  REMOVE_BUNDLED_PACKAGES: sudo rm -rf /usr/local
   # ARCH="default" (not "native") ensures, that a different execution host can execute binaries compiled elsewhere.
   BUILD_DEFAULT_LINUX: 'cmake -S . -B build -D ARCH="default" -D BUILD_TESTS=ON -D ENABLE_FUZZ_TEST=ON -D CMAKE_BUILD_TYPE=Release && cmake --build build --target all && cmake --build build --target wallet_api'
-  APT_INSTALL_LINUX: 'apt -y install build-essential cargo cmake libboost-all-dev miniupnpc libunbound-dev graphviz doxygen libunwind8-dev pkg-config libssl-dev libzmq3-dev libsodium-dev libhidapi-dev libusb-1.0-0-dev libprotobuf-dev protobuf-compiler ccache curl git'
+  APT_INSTALL_LINUX: "apt -y install build-essential cargo cmake libboost-all-dev miniupnpc libunbound-dev graphviz doxygen libunwind8-dev pkg-config libssl-dev libzmq3-dev libsodium-dev libhidapi-dev libusb-1.0-0-dev libprotobuf-dev protobuf-compiler ccache curl git"
   APT_SET_CONF: |
     tee -a /etc/apt/apt.conf.d/80-custom << EOF
     Acquire::Retries "3";
@@ -29,7 +29,7 @@ env:
 
 jobs:
   build-macos:
-    name: 'macOS (brew)'
+    name: "macOS (brew)"
     runs-on: macOS-latest
     env:
       CCACHE_TEMPDIR: /tmp/.ccache-temp
@@ -54,7 +54,7 @@ jobs:
           make -j${{env.MAKE_JOB_COUNT}}
 
   build-windows:
-    name: 'Windows (MSYS2)'
+    name: "Windows (MSYS2)"
     runs-on: windows-latest
     env:
       CCACHE_TEMPDIR: C:\Users\runneradmin\.ccache-temp
@@ -82,7 +82,7 @@ jobs:
           make release-static -j${{env.MAKE_JOB_COUNT}}
 
   build-arch:
-    name: 'Arch Linux'
+    name: "Arch Linux"
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -102,7 +102,7 @@ jobs:
 
   build-debian:
     # Oldest supported Debian version
-    name: 'Debian 11'
+    name: "Debian 11"
     runs-on: ubuntu-latest
     container:
       image: debian:11
@@ -113,7 +113,7 @@ jobs:
         run: ${{env.APT_SET_CONF}}
       - name: update apt
         run: apt update
-      - name: install monero dependencies
+      - name: install bitvaluta dependencies
         run: ${{env.APT_INSTALL_LINUX}}
       - name: install rust
         # Debian 11 ships Rust 1.48.0. We need >=1.69 to build FCMP++.
@@ -155,7 +155,7 @@ jobs:
         run: ${{env.APT_SET_CONF}}
       - name: update apt
         run: apt update
-      - name: install monero dependencies
+      - name: install bitvaluta dependencies
         run: ${{env.APT_INSTALL_LINUX}}
       - name: configure git
         run: git config --global --add safe.directory '*'
@@ -198,7 +198,7 @@ jobs:
         run: ${{env.APT_SET_CONF}}
       - name: update apt
         run: apt update
-      - name: install monero dependencies
+      - name: install bitvaluta dependencies
         run: ${{env.APT_INSTALL_LINUX}}
       - name: install pip
         run: apt install -y python3-pip
@@ -250,7 +250,7 @@ jobs:
       - name: archive
         run: |
           pip install git-archive-all
-          export VERSION="monero-$(git describe)"
+          export VERSION="bitvaluta-$(git describe)"
           export OUTPUT="$VERSION.tar"
           echo "OUTPUT=$OUTPUT" >> $GITHUB_ENV
           git-archive-all --prefix "$VERSION/" --force-submodules "$OUTPUT"

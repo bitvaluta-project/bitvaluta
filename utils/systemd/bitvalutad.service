@@ -1,0 +1,20 @@
+[Unit]
+Description=Bitvaluta Full Node
+After=network-online.target
+
+[Service]
+User=bitvaluta
+Group=bitvaluta
+WorkingDirectory=~
+StateDirectory=bitvaluta
+LogsDirectory=bitvaluta
+
+Type=simple
+ExecStart=/usr/bin/bitvalutad --config-file /etc/bitvalutad.conf --non-interactive
+StandardOutput=null
+StandardError=null
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

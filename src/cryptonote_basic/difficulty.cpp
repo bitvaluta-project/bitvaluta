@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -39,8 +39,8 @@
 #include "cryptonote_config.h"
 #include "difficulty.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "difficulty"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "difficulty"
 
 namespace cryptonote {
 

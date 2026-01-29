@@ -7,7 +7,7 @@ Otherwise, you may choose from one of the following options to install Guix:
 
 1. Using the official **shell installer script** [⤓ skip to section][install-script]
    - Maintained by Guix developers
-   - Easiest (automatically performs *most* setup)
+   - Easiest (automatically performs _most_ setup)
    - Works on nearly all Linux distributions
    - Only installs latest release
    - Binary installation only, requires high level of trust
@@ -65,6 +65,7 @@ Guix is available as a distribution package in [Debian
 ](https://packages.ubuntu.com/search?keywords=guix).
 
 To install:
+
 ```sh
 sudo apt install guix
 ```
@@ -97,7 +98,7 @@ either:
 Building Guix from source is a rather involved process but a rewarding one for
 those looking to minimize trust and maximize customizability (e.g. building a
 particular commit of Guix). Previous experience with using autotools-style build
-systems to build packages from source will be helpful. *hic sunt dracones.*
+systems to build packages from source will be helpful. _hic sunt dracones._
 
 I strongly urge you to at least skim through the entire section once before you
 start issuing commands, as it will save you a lot of unnecessary pain and
@@ -109,12 +110,14 @@ There are a few basic build tools that are required for most things we'll build,
 so let's install them now:
 
 Text transformation/i18n:
+
 - `autopoint` (sometimes packaged in `gettext`)
 - `help2man`
 - `po4a`
 - `texinfo`
 
 Build system tools:
+
 - `g++` w/ C++11 support
 - `libtool`
 - `autoconf`
@@ -124,6 +127,7 @@ Build system tools:
 - `cmake`
 
 Miscellaneous:
+
 - `git`
 - `gnupg`
 - `python3`
@@ -213,9 +217,9 @@ a prefix other than `/usr`.
 
 #### Building and installing source-built packages
 
-***IMPORTANT**: A few dependencies have non-obvious quirks/errata which are
+**\*IMPORTANT**: A few dependencies have non-obvious quirks/errata which are
 documented in the sub-sections immediately below. Please read these sections
-before proceeding to build and install these packages.*
+before proceeding to build and install these packages.\*
 
 Although you should always refer to the README or INSTALL files for the most
 accurate information, most of these dependencies use autoconf-style build
@@ -223,6 +227,7 @@ systems (check if there's a `configure.ac` file), and will likely do the right
 thing with the following:
 
 Clone the repository and check out the latest release:
+
 ```sh
 git clone <git-repo-of-dependency>/<dependency>.git
 cd <dependency>
@@ -256,6 +261,7 @@ packages and source-built packages.
 ##### Binding packages require `-dev`-suffixed packages
 
 Relevant for:
+
 - Everyone
 
 When building bindings, the `-dev`-suffixed version of the original package
@@ -272,7 +278,7 @@ Below is a list of relevant Guile bindings and their corresponding `-dev`
 packages in Debian at the time of writing.
 
 | Guile binding package | -dev Debian package |
-|-----------------------|---------------------|
+| --------------------- | ------------------- |
 | guile-gcrypt          | libgcrypt-dev       |
 | guile-git             | libgit2-dev         |
 | guile-gnutls          | (none)              |
@@ -285,6 +291,7 @@ packages in Debian at the time of writing.
 ##### `guile-git` actually depends on `libgit2 >= 1.1`
 
 Relevant for:
+
 - Those building `guile-git` from source against `libgit2 < 1.1`
 - Those installing `guile-git` from their distribution where `guile-git` is
   built against `libgit2 < 1.1`
@@ -321,11 +328,13 @@ git checkout <latest-release>
 ```
 
 Bootstrap the build system:
+
 ```
 ./bootstrap
 ```
 
 Configure with the recommended `--localstatedir` flag:
+
 ```
 ./configure --localstatedir=/var
 ```
@@ -337,6 +346,7 @@ the last paragraph of this
 details.
 
 Build Guix (this will take a while):
+
 ```
 make -j$(nproc)
 ```
@@ -396,12 +406,13 @@ in the Guix Reference Manual for more details.
 
 ## Optional setup
 
-At this point, you are set up to [use Guix to build Monero](./README.md#usage). However, if you want to polish your setup a bit and
+At this point, you are set up to [use Guix to build Bitvaluta](./README.md#usage). However, if you want to polish your setup a bit and
 make it "what Guix intended", then read the next few subsections.
 
 ### Add an `/etc/profile.d` entry
 
 This section definitely does not apply to you if you installed Guix using:
+
 1. The shell installer script
 2. fanquake's Docker image
 3. Debian's `guix` package
@@ -451,6 +462,7 @@ script installer.
 #### Instructions
 
 Create `/etc/profile.d/guix.sh` with the following content:
+
 ```sh
 # _GUIX_PROFILE: `guix pull` profile
 _GUIX_PROFILE="$HOME/.config/guix/current"
@@ -506,13 +518,17 @@ pull the latest commit on Guix's master branch, which is likely fine, but not
 recommended.
 
 If you installed Guix from source, you may get an error like the following:
+
 ```sh
 error: while creating symlink '/root/.config/guix/current' No such file or directory
 ```
+
 To resolve this, simply:
+
 ```
 sudo mkdir -p /root/.config/guix
 ```
+
 Then try the `guix pull` command again.
 
 After the `guix pull` finishes successfully,
@@ -590,7 +606,7 @@ checklist.
 1. `/etc/profile.d/guix.sh` should exist and be sourced at each shell login
 
 2. `guix describe` should not print `guix describe: error: failed to determine
-   origin`, but rather something like:
+origin`, but rather something like:
 
    ```
    Generation 38   Feb 22 2021 16:39:31    (current)
@@ -661,7 +677,7 @@ The workarounds from the GnuTLS section immediately below can be used.
 
 ### GnuTLS: test-suite FAIL: status-request-revoked
 
-*The derivation is likely identified by: `/gnu/store/vhphki5sg9xkdhh2pbc8gi6vhpfzryf0-gnutls-3.6.12.drv`*
+_The derivation is likely identified by: `/gnu/store/vhphki5sg9xkdhh2pbc8gi6vhpfzryf0-gnutls-3.6.12.drv`_
 
 This unfortunate error is most common for non-substitute builders who installed
 Guix v1.2.0. The problem stems from the fact that one of GnuTLS's tests uses a
@@ -692,12 +708,7 @@ authorized.
 
 This workaround was described [here](https://issues.guix.gnu.org/44559#5).
 
-Basically:
-2. Turn off NTP
-3. Set system time to 2020-10-01
-4. guix build --no-substitutes /gnu/store/vhphki5sg9xkdhh2pbc8gi6vhpfzryf0-gnutls-3.6.12.drv
-5. Set system time back to accurate current time
-6. Turn NTP back on
+Basically: 2. Turn off NTP 3. Set system time to 2020-10-01 4. guix build --no-substitutes /gnu/store/vhphki5sg9xkdhh2pbc8gi6vhpfzryf0-gnutls-3.6.12.drv 5. Set system time back to accurate current time 6. Turn NTP back on
 
 For example,
 
@@ -748,15 +759,12 @@ Please see the following links for more details:
 - A commit to skip this test in Guix has been merged into the core-updates branch:
   [savannah/guix@6ba1058](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=6ba1058df0c4ce5611c2367531ae5c3cdc729ab4)
 
-
 [install-script]: #options-1-and-2-using-the-official-shell-installer-script-or-binary-tarball
 [install-bin-tarball]: #options-1-and-2-using-the-official-shell-installer-script-or-binary-tarball
 [install-distro-pkg]: #option-4-using-a-distribution-maintained-package
 [install-source]: #option-5-building-from-source
-
 [fix-argv0]: #creating-and-starting-a-guix-daemon-original-service-with-a-fixed-argv0
 [security-model]: ./README.md#choosing-your-security-model
-
 [docker/volumes]: https://docs.docker.com/storage/volumes/
 [docker/bind-mnt]: https://docs.docker.com/storage/bind-mounts/
 [docker/tmpfs]: https://docs.docker.com/storage/tmpfs/
@@ -768,7 +776,7 @@ an irreversible way, you may want to completely purge Guix from your system and
 start over.
 
 1. Uninstall Guix itself according to the way you installed it (e.g. `sudo apt
-   purge guix` for Ubuntu packaging, `sudo make uninstall` for a build from source).
+purge guix` for Ubuntu packaging, `sudo make uninstall` for a build from source).
 2. Remove all build users and groups
 
    You may check for relevant users and groups using:

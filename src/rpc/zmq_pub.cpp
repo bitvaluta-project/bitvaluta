@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2024, The Monero Project
+// Copyright (c) 2020-2024, The Bitvaluta Project
 
 //
 // All rights reserved.
@@ -52,8 +52,8 @@
 #include "ringct/rctTypes.h"
 #include "cryptonote_core/cryptonote_tx_utils.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "net.zmq"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "net.zmq"
 
 namespace
 {
@@ -330,7 +330,7 @@ namespace
   {
     zmq_msg_t msg;
     zmq_msg_init(std::addressof(msg));
-    MONERO_CHECK(net::zmq::retry_op(zmq_msg_recv, std::addressof(msg), relay, ZMQ_DONTWAIT));
+    BITVALUTA_CHECK(net::zmq::retry_op(zmq_msg_recv, std::addressof(msg), relay, ZMQ_DONTWAIT));
 
     const boost::string_ref payload{
       reinterpret_cast<const char*>(zmq_msg_data(std::addressof(msg))),
@@ -373,9 +373,9 @@ zmq_pub::zmq_pub(void* context)
 
   relay_.reset(zmq_socket(context, ZMQ_PAIR));
   if (!relay_)
-    MONERO_ZMQ_THROW("Failed to create relay socket");
+    BITVALUTA_ZMQ_THROW("Failed to create relay socket");
   if (zmq_connect(relay_.get(), relay_endpoint()) != 0)
-    MONERO_ZMQ_THROW("Failed to connect relay socket");
+    BITVALUTA_ZMQ_THROW("Failed to connect relay socket");
 }
 
 zmq_pub::~zmq_pub()

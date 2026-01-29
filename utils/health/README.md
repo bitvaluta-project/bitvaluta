@@ -6,7 +6,7 @@ This directory contains tools, which can be used for checking the health of the 
 
 Unless it's stated differently, these scripts should be called from a given source directory, where you want the checks to be performed, for instance:
 
-`og@ghetto:~/dev/monero$ utils/health/clang-build-time-analyzer-run.sh`
+`og@ghetto:~/dev/bitvaluta$ utils/health/clang-build-time-analyzer-run.sh`
 
 ## ClangBuildAnalyzer
 
@@ -25,7 +25,6 @@ Performs Lint checks on the source code and stores the result in the build direc
 `utils/health/clang-include-what-you-use-run.sh`
 Analyses the header file hierarchy and delivers hints on how to reduce their complexity. More information on the [home page](https://include-what-you-use.org/).
 
-
 ## Valgrind checks
 
 `utils/health/valgrind-tests.sh`
@@ -37,10 +36,9 @@ ls -l -h
 build/tests/unit_tests/unit_tests
 ```
 
-The `*.out` results can be interpreted with the `kcachegrind` tool. 
+The `*.out` results can be interpreted with the `kcachegrind` tool.
 The memcheck output is just a readable text file with a summary at the end.
 
 # Footer
 
 Responsible: mj-xmr
-

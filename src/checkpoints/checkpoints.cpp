@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -41,8 +41,8 @@
 
 using namespace epee;
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "checkpoints"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "checkpoints"
 
 namespace cryptonote
 {
@@ -247,23 +247,23 @@ namespace cryptonote
   {
     std::vector<std::string> records;
 
-    // All four MoneroPulse domains have DNSSEC on and valid
-    static const std::vector<std::string> dns_urls = { "checkpoints.moneropulse.se"
-						     , "checkpoints.moneropulse.org"
-						     , "checkpoints.moneropulse.net"
-						     , "checkpoints.moneropulse.co"
+    // All four BitvalutaPulse domains have DNSSEC on and valid
+    static const std::vector<std::string> dns_urls = { "checkpoints.bitvalutapulse.se"
+						     , "checkpoints.bitvalutapulse.org"
+						     , "checkpoints.bitvalutapulse.net"
+						     , "checkpoints.bitvalutapulse.co"
     };
 
-    static const std::vector<std::string> testnet_dns_urls = { "testpoints.moneropulse.se"
-							     , "testpoints.moneropulse.org"
-							     , "testpoints.moneropulse.net"
-							     , "testpoints.moneropulse.co"
+    static const std::vector<std::string> testnet_dns_urls = { "testpoints.bitvalutapulse.se"
+							     , "testpoints.bitvalutapulse.org"
+							     , "testpoints.bitvalutapulse.net"
+							     , "testpoints.bitvalutapulse.co"
     };
 
-    static const std::vector<std::string> stagenet_dns_urls = { "stagenetpoints.moneropulse.se"
-                   , "stagenetpoints.moneropulse.org"
-                   , "stagenetpoints.moneropulse.net"
-                   , "stagenetpoints.moneropulse.co"
+    static const std::vector<std::string> stagenet_dns_urls = { "stagenetpoints.bitvalutapulse.se"
+                   , "stagenetpoints.bitvalutapulse.org"
+                   , "stagenetpoints.bitvalutapulse.net"
+                   , "stagenetpoints.bitvalutapulse.co"
     };
 
     if (!tools::dns_utils::load_txt_records_from_dns(records, nettype == TESTNET ? testnet_dns_urls : nettype == STAGENET ? stagenet_dns_urls : dns_urls))

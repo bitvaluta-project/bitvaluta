@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -32,7 +32,7 @@
 #include <string>
 #include <ctime>
 
-namespace Monero {
+namespace Bitvaluta {
 
 class TransactionHistoryImpl;
 

@@ -41,7 +41,7 @@ except:
 # a main offline bitvalutad, does most of the tests
 # a restricted RPC bitvalutad setup with RPC payment
 # two local online bitvalutads connected to each other
-N_MONERODS = 5
+N_BITVALUTADS = 5
 
 # 4 wallets connected to the main offline bitvalutad
 # 1 wallet connected to the first local online bitvalutad
@@ -60,7 +60,7 @@ bitvalutad_extra = [
   ["--add-exclusive-node", "127.0.0.1:18282"],
   ["--rpc-login", "md5_lover:Z1ON0101", "--offline"],
 ]
-wallet_base = [builddir + "/bin/monero-wallet-rpc", "--wallet-dir", WALLET_DIRECTORY, "--rpc-bind-port", "wallet_port", "--rpc-ssl", "disabled", "--daemon-ssl", "disabled", "--log-level", "1", "--allow-mismatched-daemon-version"]
+wallet_base = [builddir + "/bin/bitvaluta-wallet-rpc", "--wallet-dir", WALLET_DIRECTORY, "--rpc-bind-port", "wallet_port", "--rpc-ssl", "disabled", "--daemon-ssl", "disabled", "--log-level", "1", "--allow-mismatched-daemon-version"]
 wallet_extra = [
   ["--daemon-port", "18180", "--disable-rpc-login"],
   ["--daemon-port", "18180", "--disable-rpc-login"],
@@ -76,7 +76,7 @@ processes = []
 outputs = []
 ports = []
 
-for i in range(N_MONERODS):
+for i in range(N_BITVALUTADS):
   command_lines.append([str(18180+i) if x == "bitvalutad_rpc_port" else str(18280+i) if x == "bitvalutad_p2p_port" else str(18380+i) if x == "bitvalutad_zmq_port" else "tcp://127.0.0.1:" + str(18480+i) if x == "bitvalutad_zmq_pub" else builddir + "/functional-tests-directory/bitvalutad" + str(i) if x == "bitvalutad_data_dir" else x for x in bitvalutad_base])
   if i < len(bitvalutad_extra):
     command_lines[-1] += bitvalutad_extra[i]

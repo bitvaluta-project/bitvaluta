@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 // 
 // All rights reserved.
 // 
@@ -36,8 +36,8 @@
 
 #include "lmdb/db_lmdb.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "blockchain.db"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "blockchain.db"
 
 using epee::string_tools::pod_to_hex;
 

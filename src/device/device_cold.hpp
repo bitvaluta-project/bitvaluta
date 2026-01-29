@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2024, The Monero Project
+// Copyright (c) 2017-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -27,8 +27,8 @@
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#ifndef MONERO_DEVICE_COLD_H
-#define MONERO_DEVICE_COLD_H
+#ifndef BITVALUTA_DEVICE_COLD_H
+#define BITVALUTA_DEVICE_COLD_H
 
 #include "wallet/wallet2.h"
 #include <boost/optional/optional.hpp>
@@ -185,4 +185,4 @@ namespace hw {
   };
 }
 
-#endif //MONERO_DEVICE_COLD_H
+#endif //BITVALUTA_DEVICE_COLD_H

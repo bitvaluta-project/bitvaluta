@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2024, The Monero Project
+// Copyright (c) 2014-2024, The Bitvaluta Project
 //
 // All rights reserved.
 //
@@ -28,11 +28,11 @@
 
 #include "hardforks.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "blockchain.hardforks"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "blockchain.hardforks"
 
 const hardfork_t mainnet_hard_forks[] = {
-  // bitvaluta will start with modern monero features from block 1
+  // bitvaluta will start with modern bitvaluta features from block 1
   { 1, 1, 0, 1769408865 },
   { 15, 2, 0, 1769408866 },
 };

@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2024, The Monero Project
+# Copyright (c) 2014-2024, The Bitvaluta Project
 #
 # All rights reserved.
 #
@@ -29,8 +29,8 @@
 file(GLOB CRYPTONOTE_PROTOCOL *)
 source_group(cryptonote_protocol FILES ${CRYPTONOTE_PROTOCOL})
 
-#monero_private_headers(cryptonote_protocol ${CRYPTONOTE_PROTOCOL})
-monero_add_library(cryptonote_protocol ${CRYPTONOTE_PROTOCOL})
+#bitvaluta_private_headers(cryptonote_protocol ${CRYPTONOTE_PROTOCOL})
+bitvaluta_add_library(cryptonote_protocol ${CRYPTONOTE_PROTOCOL})
 target_link_libraries(cryptonote_protocol
   PUBLIC
     p2p

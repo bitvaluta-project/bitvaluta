@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2024, The Monero Project
+// Copyright (c) 2017-2024, The Bitvaluta Project
 
 // 
 // All rights reserved.
@@ -39,8 +39,8 @@ extern "C"
 #include "rctOps.h"
 #include "multiexp.h"
 
-#undef MONERO_DEFAULT_LOG_CATEGORY
-#define MONERO_DEFAULT_LOG_CATEGORY "multiexp"
+#undef BITVALUTA_DEFAULT_LOG_CATEGORY
+#define BITVALUTA_DEFAULT_LOG_CATEGORY "multiexp"
 
 //#define MULTIEXP_PERF(x) x
 #define MULTIEXP_PERF(x)
